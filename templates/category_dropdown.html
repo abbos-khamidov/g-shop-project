@@ -1,0 +1,12 @@
+{% if children and children.exists %}
+    <ul class="dropdown-menu">
+        {% for child in children %}
+            <li class="dropdown-item">
+                <a href="{{ child.get_absolute_url }}">{{ child.name }}</a>
+                {% if child.children.exists %}
+                    {% include 'category_dropdown.html' with children=child.children.all %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
