@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,109 +8,126 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
 
-        .menu-container {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 0 25px;
-        }
+    .menu-wrapper {
+        display: flex;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-        .menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-        }
+    .menu {
+        width: 250px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        border-right: 1px solid #ddd;
+    }
 
-        .menu > li {
-            position: relative;
-        }
+    .menu > li {
+        position: relative;
+    }
 
-        .menu > li > a {
-            display: block;
-            padding: 15px 10px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
+    .menu > li > a {
+        display: block;
+        padding: 15px 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
 
-        .menu > li > a:hover {
-            color: #007bff;
-        }
+    .menu > li > a:hover {
+        background-color: #f5f5f5;
+        color: #007bff;
+    }
 
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: none;
-            max-width: 200px;
-            border: 1px solid #ddd;
-            z-index: 1000;
-        }
+    .dropdown-menu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        background: white;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ddd;
+        display: none;
+        min-width: 200px;
+        z-index: 1000;
+    }
 
-        .dropdown:hover > .dropdown-menu {
-            display: block;
-        }
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
 
-        .dropdown-item {
-            position: relative;
-        }
+    .dropdown-item {
+        position: relative;
+    }
 
-        .dropdown-item > a {
-            display: block;
-            padding: 10px 15px;
-            text-decoration: none;
-            white-space: nowrap;
-        }
+    .dropdown-item > a {
+        display: block;
+        padding: 12px 18px;
+        text-decoration: none;
+        white-space: nowrap;
+        color: #333;
+    }
 
-        .dropdown-item > a:hover {
-            background-color: #f0f0f0;
-            color: #007bff;
-        }
+    .dropdown-item > a:hover {
+        background-color: #f0f0f0;
+        color: #007bff;
+    }
 
-        .dropdown-item > .dropdown-menu {
-            top: 0;
-            left: 100%;
-            display: none;
-        }
+    .dropdown-item:hover > .dropdown-menu {
+        display: block;
+        left: 100%;
+        top: 0;
+        position: absolute;
+    }
 
-        .dropdown-item:hover > .dropdown-menu {
-            display: block;
-        }
+    .banner-container {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f9f9f9;
+    }
 
-        .location-bar {
-            width: 100%;
-            height: 60px;
-            background-color: #EDEDED;
-        }
+    .banner-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
 
-        .location-wrapper {
-            width: 70%;
-            height: 60px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .location-bar {
+        width: 100%;
+        height: 60px;
+        background-color: #EDEDED;
+    }
 
-        .location-wrapper div span {
-            font-size: 16px;
-        }
+    .location-wrapper {
+        width: 70%;
+        height: 60px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-        .fa-sun {
-            margin-right: 50px;
-        }
+    .location-wrapper div span {
+        font-size: 16px;
+    }
+
+    .fa-sun {
+        margin-right: 50px;
+    }
+
 
     </style>
 </head>
@@ -130,7 +148,7 @@
             </div>
         </div>
     </div>
-    <nav class="menu-container">
+    <nav class="menu-wrapper">
         <ul class="menu">
             {% for category in categories %}
                 <li class="dropdown">
@@ -139,7 +157,12 @@
                 </li>
             {% endfor %}
         </ul>
+
+        <div class="banner-container">
+            <img src="{% static 'images/Mchose.jpg' %}" alt="MCHOSE Banner">
+        </div>
     </nav>
+
   
 
     <script>
